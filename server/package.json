@@ -1,0 +1,12 @@
+{
+  "name": "unlv-spots",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/cs472-spots/spots",
+  "author": "cs472-spots",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^2.5.5",
+    "express": "^4.14.1"
+  }
+}
