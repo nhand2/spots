@@ -9,13 +9,18 @@ app.use(express.static('frontend/build'));
 
 app.get('/', function(request, response) {
   response.send(fs.readFileSync('index.html', {encoding: 'utf8'}));
-  console.log("responded to client")
+  console.log("responded to client");
 });
 
 io.on('connection', (socket) => {
-  socket.emit("message", "hello world");
+	socket.on('hello', (msg) =>{
+		console.log('Message is:' + msg);
+	});
+  socket.emit('message', 'hello world');
   console.log("Client connected");
+  //console.log(data);
 });
+
 
 server.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));

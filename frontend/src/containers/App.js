@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 import SocketIOClient from 'socket.io-client';
-import logo from './logo.svg';
+import logo from '../assets/logo.svg';
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.socket = SocketIOClient('http://localhost:3000');
+	
+	this.keyPressEvent = this.keyPressEvent.bind(this);
   }
-
+  
+  	keyPressEvent() {
+		this.socket.emit('hello', "hello server");
+		this.socket.on('message', (message)=>{
+			console.log('Received the following messge from server: ' + message);
+		});
+		
+	}
+	
+		
   render() {
     return (
       <div className="App">
@@ -20,9 +30,21 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+		<button	
+			onClick={this.keyPressEvent}>
+			Send Message
+		</button>
+			
       </div>
     );
   }
-}
+	
+	/* //Performing an API Request
+		//www.raywenderlich.com/126063/react-native-tutorial
+	*/	
+		
+	}
+
+
 
 export default App;
