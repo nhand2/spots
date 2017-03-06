@@ -13,7 +13,7 @@ app.get('/', function(request, response) {
 });
 
 io.on('connection', (socket) => {
-  socket.emit("message", "hello world");
+  socket.emit('message', 'hello from server');
   console.log("Client connected");
 });
 
